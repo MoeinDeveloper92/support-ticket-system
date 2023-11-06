@@ -10,9 +10,21 @@ import NewTicket from './pages/NewTicket'
 import PrivateComponent from './components/PrivateComponent'
 import Tickets from './pages/Tickets'
 import Ticket from './pages/Ticket'
+import { motion } from "framer-motion"
 const App = () => {
+
+  const containerVariant = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } }
+  }
+
+
   return (
-    <>
+    <motion.div
+      variants={containerVariant}
+      initial="hidden"
+      animate="visible"
+    >
       <div className='container'>
         <Header />
         <Routes>
@@ -38,7 +50,7 @@ const App = () => {
         </Routes>
       </div>
       <ToastContainer />
-    </>
+    </motion.div>
   )
 }
 

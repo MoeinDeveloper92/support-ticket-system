@@ -4,8 +4,9 @@ import { getTickets, reset } from '../features/tickets/ticketSlice'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
 import TicketItem from '../components/TicketItem'
-
+import { motion } from "framer-motion"
 const Tickets = () => {
+
     const { tickets, isLoading, isError, isSuccess, message } = useSelector((state) => state.ticket)
     const dispatch = useDispatch()
 
@@ -37,9 +38,20 @@ const Tickets = () => {
                     <div>Status</div>
                     <div></div>
                 </div>
-                {tickets.map((ticket) => (
-                    <TicketItem key={ticket._id} ticket={ticket} />
-                ))}
+                <motion.div
+                    initial={{
+                        opacity: 0
+                    }}
+                    animate={{
+                        opacity: 1
+                    }}
+
+                >
+                    {tickets.map((ticket) => (
+                        <TicketItem key={ticket._id} ticket={ticket} />
+                    ))}
+                </motion.div>
+
             </div>
         </>
     )

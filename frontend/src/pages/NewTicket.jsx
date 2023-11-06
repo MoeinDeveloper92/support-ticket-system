@@ -5,7 +5,7 @@ import Spinner from "../components/Spinner"
 import { createTicket, reset } from '../features/tickets/ticketSlice'
 import { toast } from 'react-toastify'
 import BackButton from '../components/BackButton'
-
+import { motion } from "framer-motion"
 const NewTicket = () => {
     const { user } = useSelector((state) => state.auth)
     const [name] = useState(user.name)
@@ -44,7 +44,14 @@ const NewTicket = () => {
         return <Spinner />
     }
     return (
-        <>
+        <motion.div
+            initial={{
+                opacity: 0
+            }}
+            animate={{
+                opacity: 1
+            }}
+        >
             <BackButton url={"/"} />
             <section className="heading">
                 <h1>Create New Ticket</h1>
@@ -107,7 +114,7 @@ const NewTicket = () => {
                     </div>
                 </form>
             </section>
-        </>
+        </motion.div>
     )
 }
 
